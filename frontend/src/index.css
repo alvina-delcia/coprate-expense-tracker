@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-surface text-ink-900 font-sans;
+  }
+  ::selection {
+    @apply bg-brand-500/30 text-ink-900;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-line rounded-full;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  /* ---- Surfaces ---- */
+  .card {
+    @apply bg-card rounded-xl shadow-card border border-line p-6 transition-colors duration-200;
+  }
+  .card-hover {
+    @apply hover:bg-cardHover hover:border-line;
+  }
+  .surface-muted {
+    @apply bg-surface2 border border-line rounded-xl;
+  }
+
+  /* ---- Buttons ---- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-brand-500 text-navy-700 font-semibold text-sm shadow-sm hover:bg-brand-400 active:bg-brand-600 transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-transparent text-ink-600 font-medium text-sm border border-line hover:bg-surface2 hover:text-ink-900 transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-ink-400 font-medium text-sm hover:bg-surface2 hover:text-ink-900 transition-colors duration-150 disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-status-rejected text-white font-medium text-sm hover:bg-red-600 transition-colors duration-150 disabled:opacity-50;
+  }
+  .btn-success {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-status-approved text-white font-medium text-sm hover:bg-emerald-600 transition-colors duration-150 disabled:opacity-50;
+  }
+  .icon-btn {
+    @apply h-9 w-9 inline-flex items-center justify-center rounded-lg text-ink-400 hover:text-ink-900 hover:bg-surface2 transition-colors duration-150;
+  }
+
+  /* ---- Forms ---- */
+  .input-field {
+    @apply w-full px-3.5 py-2.5 rounded-lg border border-line bg-surface2 text-sm text-ink-900 placeholder:text-ink-300 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-colors duration-150;
+  }
+  .label {
+    @apply block text-sm font-medium text-ink-600 mb-1.5;
+  }
+  .label-required::after {
+    content: " *";
+    @apply text-status-rejected;
+  }
+  .help-text {
+    @apply text-xs text-ink-400 mt-1;
+  }
+  .error-text {
+    @apply text-xs text-status-rejected mt-1;
+  }
+
+  /* ---- Badges ---- */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border;
+  }
+  .badge-approved {
+    @apply badge text-status-approved border-status-approved/25;
+    background-color: theme("colors.status.approvedBg");
+  }
+  .badge-pending {
+    @apply badge text-status-pending border-status-pending/25;
+    background-color: theme("colors.status.pendingBg");
+  }
+  .badge-rejected {
+    @apply badge text-status-rejected border-status-rejected/25;
+    background-color: theme("colors.status.rejectedBg");
+  }
+  .badge-draft {
+    @apply badge text-ink-400 border-line;
+    background-color: theme("colors.status.draftBg");
+  }
+  .badge-info {
+    @apply badge text-status-info border-status-info/25;
+    background-color: theme("colors.status.infoBg");
+  }
+
+  /* ---- Typography hierarchy ---- */
+  .page-title {
+    @apply text-2xl font-bold text-ink-900 tracking-tight;
+  }
+  .page-subtitle {
+    @apply text-sm text-ink-400 mt-1;
+  }
+  .section-title {
+    @apply text-sm font-semibold text-ink-900;
+  }
+  .card-title {
+    @apply text-sm font-semibold text-ink-900;
+  }
+
+  /* ---- Table ---- */
+  .table-head-cell {
+    @apply px-6 py-3 text-left text-xs font-semibold text-ink-300 uppercase tracking-wide;
+  }
+  .table-row {
+    @apply border-b border-line/70 hover:bg-surface2/60 transition-colors duration-100;
+  }
+  .table-cell {
+    @apply px-6 py-3.5 text-sm text-ink-600;
+  }
+
+  /* ---- Skeleton loaders ---- */
+  .skeleton {
+    @apply relative overflow-hidden bg-line/40 rounded-md;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 237, 230, 0.06),
+      transparent
+    );
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  .skeleton::after {
+    transform: translateX(-100%);
+  }
+}
